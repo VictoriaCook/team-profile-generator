@@ -5,9 +5,9 @@ const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 
-// First series of prompts (Manager)
+// First series of prompts (manager)
 
-const staffData = [];
+const teamData = [];
 inquirer
   .prompt([
     {
@@ -38,60 +38,121 @@ inquirer
       answers.Email,
       answers.OfficeNumber
     );
-    staffData.push(manager);
+    teamData.push(manager);
     teamPrompt();
   });
 
-// const generateMarkdown = require('./generateMarkdown');
+// Series of prompts to add more team members or generate HTML page
 
-// Array of questions for user input
-// const questions = [
-//     {
-//         type: "input",
-//         name: "title",
-//         message: "Please enter the title of your project",
-//       },
-//       {
-//         type: "input",
-//         name: "description",
-//         message: "Please enter the description of your project",
-//       },
-//       {
-//         type: "input",
-//         name: "installation",
-//         message: "Please enter the instructions for your project installation",
-//       },
-//       {
-//         type: "input",
-//         name: "usage",
-//         message: "Please enter your project usage information",
-//       },
-//       {
-//         type: "list",
-//         name: "license",
-//         choices: ["MIT", "Apache", "GPL", "None"],
-//       },
-//       {
-//         type: "input",
-//         name: "contribution",
-//         message: "Please enter the contribution requirements for your project",
-//       },
-//       {
-//         type: "input",
-//         name: "tests",
-//         message: "Please enter your project testing instructions",
-//       },
-//       {
-//         type: "input",
-//         name: "github",
-//         message: "Please enter your GitHub username",
-//       },
-//       {
-//         type: "input",
-//         name: "email",
-//         message: "Please enter your email address",
-//       },
-// ];
+const teamPrompt = () => {
+  inquirer
+    .prompt([
+      {
+        type: "list",
+        name: "memberType",
+        message: "Which type of team member would you like to add?",
+        choices: ["Engineer", "Intern", "I'm done"],
+      },
+    ])
+    .then((answers) => {
+      console.log(answers);
+      switch (answers.memberType) {
+        case "Engineer":
+          addEngineer();
+          break;
+        case "Intern":
+          addIntern();
+          break;
+        case "I'm done":
+          createTeam();
+          break;
+      }
+    });
+};
+
+// Series of prompts (engineer)
+
+const addEngineer = () => {
+  inquirer
+    .prompt([
+      {
+        type: "input",
+        name: "Name",
+        message: "Enter the engineer's name:",
+      },
+      {
+        type: "input",
+        name: "Id",
+        message: "Enter the engineer's employee ID:",
+      },
+      {
+        type: "input",
+        name: "Email",
+        message: "Enter the engineer's email address:",
+      },
+      {
+        type: "input",
+        name: "Github",
+        message: "Enter the engineer's GitHub username:",
+      },
+    ])
+    .then((answers) => {
+      let engineer = new Engineer(
+        answers.Name,
+        answers.Id,
+        answers.Email,
+        answers.Github
+      );
+      teamData.push(engineer);
+      teamPrompt();
+    });
+};
+
+// Series of prompts (intern)
+
+const addIntern = () => {
+  inquirer
+    .prompt([
+      {
+        type: "input",
+        name: "Name",
+        message: "Enter the intern's name:",
+      },
+      {
+        type: "input",
+        name: "Id",
+        message: "Enter the intern's employee ID:",
+      },
+      {
+        type: "input",
+        name: "Email",
+        message: "Enter the intern's email address:",
+      },
+      {
+        type: "input",
+        name: "School",
+        message: "Enter the intern's school:",
+      },
+    ])
+    .then((answers) => {
+      let intern = new Intern(
+        answers.Name,
+        answers.Id,
+        answers.Email,
+        answers.School
+      );
+      teamData.push(intern);
+      teamPrompt();
+    });
+};
+
+// Generate html page
+
+function createTeam() {
+  fs.writeFileSync("./dist/output.html", generateTeam(teamData), "utf-8");
+}
+
+// const generateMarkdown = require('./generateMarkdown');
 
 // // Function to write README file
 // function writeToFile(fileName, data) {
