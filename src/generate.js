@@ -39,7 +39,7 @@ const generateTeam = (team) => {
             <ul>
                 <li>ID: ${engineer.getId()}</li>
                 <li>Email: <a href="mailto:${engineer.getEmail()}">  ${engineer.getEmail()} </a> </li>
-                <li>Github: <a href="https://github.com/${engineer.getGithub()}"> ${engineer.getGithub()} </a> </li>
+                <li>Github: <a href="https://github.com/${engineer.getGithub()}" target="_blank"> ${engineer.getGithub()} </a> </li>
             </ul>
         </div>
           `;
