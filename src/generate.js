@@ -12,7 +12,7 @@ const generateTeam = (team) => {
               ${manager.getName()}
           </h1>
           <h2>
-              Manager 💼
+              Manager
           </h2>
           <ul>
               <li>ID: ${manager.getId()}</li>
@@ -31,10 +31,10 @@ const generateTeam = (team) => {
       
         <div class="card">
             <h1>
-                ${engineer.getName()}
+                ${engineer.getName()} 
             </h1>
             <h2>
-                ${engineer.getRole()} 💻
+                ${engineer.getRole()}
             </h2>
             <ul>
                 <li>ID: ${engineer.getId()}</li>
@@ -55,7 +55,7 @@ const generateTeam = (team) => {
                 ${intern.getName()}
             </h1>
             <h2>
-                ${intern.getRole()} 🎓
+                ${intern.getRole()}
             </h2>
             <ul>
                 <li>ID: ${intern.getId()}</li>
