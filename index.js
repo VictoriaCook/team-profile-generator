@@ -5,6 +5,43 @@ const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 
+// First series of prompts (Manager)
+
+const staffData = [];
+inquirer
+  .prompt([
+    {
+      type: "input",
+      name: "Name",
+      message: "Enter the team manager's name:",
+    },
+    {
+      type: "input",
+      name: "Id",
+      message: "Enter the team manager's employee ID:",
+    },
+    {
+      type: "input",
+      name: "Email",
+      message: "Enter the team manager's email address:",
+    },
+    {
+      type: "input",
+      name: "OfficeNumber",
+      message: "Enter the team manager's office number:",
+    },
+  ])
+  .then((answers) => {
+    let manager = new Manager(
+      answers.Name,
+      answers.Id,
+      answers.Email,
+      answers.OfficeNumber
+    );
+    staffData.push(manager);
+    teamPrompt();
+  });
+
 // const generateMarkdown = require('./generateMarkdown');
 
 // Array of questions for user input
