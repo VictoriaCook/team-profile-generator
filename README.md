@@ -22,6 +22,6 @@ To run the tests written for each of the parent and child classes (employee clas
 
 ## Video walkthrough
 
-A video demonstrating this app's functionality is here: TBC
+A video demonstrating this app's functionality is here: https://watch.screencastify.com/v/1ImIHltgNpddxWWugrTX
 
 ---
