@@ -51,7 +51,7 @@ const teamPrompt = () => {
         type: "list",
         name: "memberType",
         message: "Which type of team member would you like to add?",
-        choices: ["Engineer", "Intern", "I'm done"],
+        choices: ["Engineer", "Intern", "I don't need to add any more team members"],
       },
     ])
     .then((answers) => {
@@ -63,7 +63,7 @@ const teamPrompt = () => {
         case "Intern":
           addIntern();
           break;
-        case "I'm done":
+        case "I don't need to add any more team members":
           createTeam();
           break;
       }
